@@ -1,6 +1,10 @@
 package kodlama.io.rentacar.api.controllers;
 
 import kodlama.io.rentacar.business.abstracts.BrandService;
+import kodlama.io.rentacar.business.dto.requests.create.CreateBrandRequest;
+import kodlama.io.rentacar.business.dto.responses.create.CreateBrandResponse;
+import kodlama.io.rentacar.business.dto.responses.get.GetAllBrandsResponse;
+import kodlama.io.rentacar.business.dto.responses.get.GetBrandResponse;
 import kodlama.io.rentacar.entities.Brand;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,19 +19,19 @@ public class BrandsController {
     private final BrandService service;
 
     @GetMapping
-    public List<Brand> getAll() {
+    public List<GetAllBrandsResponse> getAll() {
         return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public Brand getById(@PathVariable int id) {
+    public GetBrandResponse getById(@PathVariable int id) {
         return service.getById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Brand add(@RequestBody Brand brand) {
-        return service.add(brand);
+    public CreateBrandResponse add(@RequestBody CreateBrandRequest request) {
+        return service.add(request);
     }
 
     @PutMapping("/{id}")
