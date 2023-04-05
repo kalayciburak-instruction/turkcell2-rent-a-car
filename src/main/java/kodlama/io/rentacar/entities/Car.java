@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -22,7 +24,10 @@ public class Car {
     private double dailyPrice;
     @Enumerated(EnumType.STRING)
     private State state;
+
     @ManyToOne
-//    @JsonManagedReference
-    private Model model; // modelId
+    private Model model;
+
+    @OneToMany(mappedBy = "car")
+    private List<Maintenance> maintenances;
 }
