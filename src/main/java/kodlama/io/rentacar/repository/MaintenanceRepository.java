@@ -7,5 +7,5 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
 //    @Nonnull
 //    Maintenance findById(int id);
     Maintenance findMaintenanceByCarIdAndIsCompletedFalse(int carId);
-    boolean existsByCarIdAndIsCompletedFalse(int carId);
+    boolean existsByCarIdAndIsCompletedIsFalse(int carId);
 }

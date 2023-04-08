@@ -35,7 +35,7 @@ public class CarManager implements CarService {
 
     @Override
     public GetCarResponse getById(int id) {
-        checkIfExistsById(id);
+        checkIfCarExists(id);
         Car car = repository.findById(id).orElseThrow();
         GetCarResponse response = mapper.map(car, GetCarResponse.class);
 
@@ -55,7 +55,7 @@ public class CarManager implements CarService {
 
     @Override
     public UpdateCarResponse update(int id, UpdateCarRequest request) {
-        checkIfExistsById(id);
+        checkIfCarExists(id);
         Car car = mapper.map(request, Car.class);
         car.setId(id);
         repository.save(car);
@@ -66,7 +66,7 @@ public class CarManager implements CarService {
 
     @Override
     public void delete(int id) {
-        checkIfExistsById(id);
+        checkIfCarExists(id);
         repository.deleteById(id);
     }
 
@@ -77,7 +77,7 @@ public class CarManager implements CarService {
         repository.save(car);
     }
 
-    private void checkIfExistsById(int id) {
+    private void checkIfCarExists(int id) {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Böyle bir araç bulunamadı!");
         }
