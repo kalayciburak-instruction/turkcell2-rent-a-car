@@ -1,5 +1,7 @@
 package kodlama.io.rentacar.business.dto.requests.create;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import kodlama.io.rentacar.business.dto.requests.PaymentRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,10 +12,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateRentalRequest {
-    private int carId;
-    private double dailyPrice;
-    private int rentedForDays;
-    // Kart bilgileri
-    private PaymentRequest paymentRequest;
+public class CreatePaymentRequest extends PaymentRequest {
+    @NotNull
+    @Min(value = 1)
+    private double balance;
 }
