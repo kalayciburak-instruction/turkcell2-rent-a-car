@@ -23,15 +23,14 @@ public class PaymentRequest { // Base/Super class
     @Length(min = 5)
     private String cardHolder;
 
-    @NotNull
     @Min(value = 2023)
     private int cardExpirationYear;
 
-    @NotNull
     @Max(value = 12)
     @Min(value = 1)
     private int cardExpirationMonth;
 
+    @NotNull
     @NotBlank
     @Length(min = 3, max = 3)
     private String cardCvv;
